@@ -1,0 +1,129 @@
+11:42 AM 07-09-2023// ORDER TABLE:-
+CREATE TABLE orders(
+        order_id int PRIMARY KEY AUTO_INCREMENT,  	
+    	customer_id  int(11),	
+   	 FOREIGN KEY(customer_id ) REFERENCES customers(customer_id),
+    order_date DATE,
+    total_amount int
+    );
+
+//categories table data:-
+INSERT INTO `categories`(`category_name`) VALUES ('Shirt'),
+ ('T-shirt'),
+ ('Saree'),
+ ('Jeans'),
+ ('Kurta'),
+ ('Lehenga'),
+ ('Shoes'),
+ ('Sweater');
+
+//customers table data:-
+INSERT INTO `customers`(`first_name`, `last_name`, `email`, `phone`, `address`) VALUES ('Ram','sharma','abc@gmail.com','966444421','abc'),
+('shyam','dubey','pqr@gmail.com','45495121','pqr'),
+('abhi','mishra','xyz@gmail.com','202022233','xyz'),
+('gori','rao','mno@gmail.com','54481021','mno'),
+('kajal','patel','jkl@gmail.com','666560050','jkl'),
+('seeta','kushwaha','efg@gmail.com','3233111','efg'),
+('geeta','verma','ijk@gmail.com','787781154','ijk'),
+('krishna','soni','lmn@gmail.com','62335544','lmn'),
+('Ghanshyam','dubey','abc@gmail.com','784652123','abc'),
+('Rama','gautam','efg@gmail.com','02121555','efg');
+
+//items table data:-
+INSERT INTO `items`(`item_name`, `description`, `price`, `stock_quantity`) VALUES ('T-shirt','good quality','200','20'),
+('Saree','bad quality','400','20'),
+('Shoes','poor quality','600','50'),
+('Sweater','very much quality','510','66'),
+('Lehenga','low quality','220','78'),
+('Kurta','good quality','300','70'),
+('Sweater','Exelent quality','600','55'),
+('T-shirt','cheap quality','900','56'),
+('Jeans','low quality','1000','28'),
+('T-shirt','best quality','1500','30'),
+('Lehenga','poor quality','700','60'),
+('T-shirt','good quality','900','50'),
+('Saree','low quality','800','26'),
+('Kurta','very much quality','500','56'),
+('Shoes','poor quality','2010','26'),
+('T-shirt','better quality','2000','200'),
+('Sweater','good quality','2900','10'),
+('T-shirt','low quality','2500','50'),
+('Lehenga','better quality','1200','120'),
+('Jeans','good quality','2100','20');
+
+// orders table data:-
+INSERT INTO `orders`(`customer_id`, `order_date`, `total_amount`) VALUES ('1','2023-08-04','400'),
+('2','2023-10-04','500'),
+('3','2023-01-08','600'),
+('4','2023-09-03','700'),
+('5','2000-08-09','800'),
+('6','2000-11-11','900'),
+('7','2023-05-04','1000'),
+('8','2023-02-04','1100'),
+('9','2023-06-04','1500'),
+('10','2023-01-04','1300'),
+('1','2023-04-04','1200'),
+('2','2023-03-04','1400'),
+('3','2023-08-04','4100'),
+('4','1964-09-04','4500'),
+('5','2021-07-04','490'),
+('6','2000-12-04','460'),
+('7','2023-02-04','650'),
+('8','2023-06-04','5400'),
+('9','2023-03-04','2100'),
+('10','2020-07-04','2300'),
+('1','2021-08-04','3000'),
+('2','2023-09-04','200'),
+('3','2023-09-04','425'),
+('4','2023-09-04','498'),
+('5','2023-09-04','564'),
+('6','2023-09-04','360'),
+('7','2023-09-04','890'),
+('8','2023-09-04','230'),
+('9','2023-09-04','450'),
+('10','2023-09-04','300');
+
+//Task 4: Update Data Write a SQL query to update the stock quantity of a specific item in
+the items table.
+QUERY= UPDATE `items` SET `stock_quantity`='50' WHERE `item_id`='1';
+
+//Task 5: Delete Data Write a SQL query to delete a customer from the customers table
+and all related orders (if any) in the database.
+QUERY= DELETE FROM `customers` WHERE  customer_id=2; 
+
+//Task 6: Retrieve Item Information Write an SQL query to retrieve information about an
+item, including its name, description, price, and category name, for a specific item.
+QUERY= SELECT items.item_name,description,price, categories.category_name FROM `items` INNER JOIN `categories` ON items.category_id= categories.category_id;
+
+//Task 7: Calculate Total Stock Value Write an SQL query to calculate the total value of all
+items in stock, considering the price and stock quantity.
+QUERY= SELECT SUM(`price`AND `stock_quantity`) FROM `items`;  // OUTPUT= 20
+				0R
+SELECT SUM(`price`) FROM `items`;  // OUTPUT= 21840
+SELECT SUM(`stock_quantity`) FROM `items`;  //OUTPUT=1121
+
+//Task 8: Retrieve Customer Order History Write an SQL query to retrieve the order history
+for a specific customer, including order dates, item names, quantities, and total amounts
+spent.
+QUERY= SELECT orders.order_date, orders.total_amount, items.item_name,items.stock_quantity FROM `orders`INNER JOIN `items` ON orders.customer_id=items.item_id; // output= 
+
+//Task 9: Implement ORDER BY DESC Write an SQL query to retrieve a list of all tables,
+ordering them in descending order by the primary_key or id column.
+QUERY= 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
