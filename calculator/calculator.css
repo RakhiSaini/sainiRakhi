@@ -1,0 +1,65 @@
+.div1{
+    position: absolute;
+    height: 490px;
+    width: 98%;
+    background-color: #424242;
+}
+.first{
+    position: absolute;
+    background-color: #ABABAB;
+    border: 1px solid black;
+    height: 80%;
+    width: 30%; 
+    margin-left: 35%; 
+    margin-top: 5%;   
+    border-radius: 5px;     
+}
+.second{
+    height: 80%;
+    width: 70%;
+    /* border: 1px solid white; */
+    margin-top: 10%;
+    margin-left: 15%;
+    text-align: center;
+}
+.buttons{
+    height: 50%;
+    width: 70%;
+    /* border: 1px solid red; */
+    margin-top: 5%;
+    margin-left: 15%; 
+    
+}
+.button4{
+    background-color: black;
+    color: white;
+}
+.buttons1{
+    margin-top: 10%;
+}
+.button8{
+    background-color: black;
+    color: white;
+}
+.buttons2{
+    margin-top: 10%;
+}
+.button12{
+    background-color: black;
+    color: white;
+}
+.buttons3{
+    margin-top: 10%;
+}
+.button13{
+    background-color: red;
+    color: white;
+}
+.button15{
+    background-color: black;
+    color: white;
+}
+.button16{
+    background-color: black;
+    color: white;
+}
