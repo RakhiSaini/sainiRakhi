@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      /* audio{
+        display: none;
+      } */
+
+      svg {
+        padding-top: 15px;
+        /* margin-top: 15px; */
+        font-size: 250px;
+        background-color: rgb(36, 141, 194);
+        height: 70px;
+        width: 100%;
+        border-radius: 25px;
+      }
+
+      .copy {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 3px;
+        stroke-dasharray: 8% 30%;
+        stroke-dashoffset: 0%;
+        animation: textanimation 6s linear infinite;
+      }
+      @keyframes textanimation {
+        100% {
+          stroke-dashoffset: -35%;
+        }
+      }
+
+      .copy1 {
+        /* stroke:rgb(26, 146, 215); */
+        stroke: #673ab7;
+        animation-delay: -1s;
+      }
+
+      .copy2 {
+        /* stroke:#009dff; */
+        stroke: #e91e63;
+        animation-delay: -2s;
+      }
+
+      .copy3 {
+        /* stroke:rgb(16, 155, 210); */
+        stroke: #ff5722;
+        animation-delay: -3s;
+      }
+
+      .copy4 {
+        /* stroke: rgb(92, 209, 247); */
+        stroke: #f44336;
+        animation-delay: -4s;
+      }
+
+      .copy5 {
+        /* stroke:#ffc107; */
+        stroke: #ffc107;
+        animation-delay: -5s;
+      }
+      
+      .threecol {
+        margin-top: 5%;
+        justify-content: space-around;
+      }
+
+      .col-lg-3 {
+        border-radius: 15px;
+        text-align: center;
+        width: 15%;
+      }
+      input {
+        border-radius: 15px;
+        border: white;
+        width: 35%;
+      }
+
+      .container-buttons {
+        margin-top: 5%;
+        padding: 12px;
+      }
+      .gameBtns:hover {
+        opacity: 0.4;
+      }
+      .gameBtns {
+        padding: 5px;
+        margin: 2px;
+        border-radius: 40px;
+        width: 5%;
+        background-color: lightskyblue;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body background="bg image/image4.jpg">
+    <!-- <audio controls autoplay loop>
+      <source src="music/click-button-140881.mp3" type="audio/mp3">
+    </audio> -->
+    <audio id="bgMusic" src="./music/fight-142564.mp3"></audio>
+    <audio id="btnClickMusic" src="./music/click-button-140881.mp3"></audio>
+    <div class="container">
+      <svg viewBox="0 0 1000 300">
+        <text id="mytext" x="50%" y="50%" text-anchor="middle" fill="none">
+          DEMO GAME
+        </text>
+        <use xlink:href="#mytext" class="copy copy1"></use>
+        <use xlink:href="#mytext" class="copy copy2"></use>
+        <use xlink:href="#mytext" class="copy copy3"></use>
+        <use xlink:href="#mytext" class="copy copy4"></use>
+        <use xlink:href="#mytext" class="copy copy5"></use>
+      </svg>
+      <div class="container">
+        <div class="row threecol">
+          <div class="col-lg-3 col-md-3 col-sm-12 border border-2 border-info">
+            HINT<br />
+            <input id="hintVal" type="number" readonly />
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12 border border-2 border-info">
+            TIMER<br />
+            <input id="timerVal" type="number" readonly placeholder="0.00" />
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12 border border-2 border-info">
+            SCORE<br />
+            <input id="scoreVal" type="number" readonly placeholder="0" />
+          </div>
+        </div>
+      </div>
+      <div class="container-buttons"></div>
+    </div>
+    <script>
+      var hint = 0;
+      var score = 0;
+      var totalTimer = 60;
+// function bgPlay() {
+//   document.getElementById('bgMusic').play();
+// }
+//  bgPlay();
+
+function btnClickPlay() {
+  document.getElementById('btnClickMusic').play();
+}
+
+
+      function getNewHint() {
+        hint = generateRn();
+        document.getElementById("hintVal").value = hint;
+      }
+
+      function generateBtns() {
+        //  bgPlay();
+        let btns = "";
+        //   const buttonsContainer = document.getElementById("buttonsContainer");
+        let btnContainer = document.querySelector(".container-buttons");
+
+        for (let i = 0; i <= 125; i++) {
+          let rn = generateRn();
+          btns += `<button onmousedown="btnClickPlay()" class='gameBtns'>${rn}</button>`;
+        }
+        btnContainer.innerHTML = btns;
+        let gameBtns = new Audio();
+        gameBtns.src = "music/click-button-140881.mp3";
+        
+      }
+
+      //  let gameBtns = document.getElementsByClassName("gameBtns");
+      //  console.log(gameBtns);
+
+      //   Array.from(gameBtns).forEach((e) => {
+      //     console.log(e);
+
+      //     e.addEventListener("click", (e) => {
+      //       console.log(e.target.innerText);
+      //       alert("wrong");
+      //     });
+      //   });
+
+      function generateRn() {
+        let rno = Math.floor(Math.random() * 100);
+        return rno;
+        console.log(rno);
+      }
+
+      let btnContainer = document.querySelector(".container-buttons");
+
+      btnContainer.addEventListener("click", (e) => {
+        console.log(e.target.innerText);
+        let clickedNo = Number(e.target.innerText);
+
+        if (clickedNo === hint) {
+          getNewHint();
+          generateBtns();
+          addScore();
+        } else {
+          alert("Wrong Number");
+          generateBtns();
+          if (score > 0) {
+            minusScore();
+          }
+        }
+      });
+
+      function addScore() {
+        score = score + 10;
+        document.getElementById("scoreVal").value = score;
+      }
+
+      function gameOver() {
+        console.log(`Game Over With Score = ${score}`);
+        alert(`Game Over With Score = ${score}`);
+        window.location.reload();
+      }
+
+      function minusScore() {
+        score = score - 10;
+        document.getElementById("scoreVal").value = score;
+      }
+
+      function runTimer() {
+        var timeOut = setInterval(() => {
+          if (totalTimer > 0) {
+            totalTimer--;
+            document.getElementById("timerVal").value = totalTimer;
+          } else {
+            clearInterval(timeOut);
+            console.log("TimeOut");
+            gameOver();
+          }
+        }, 1000);
+      }
+
+      runTimer();
+      generateBtns();
+      getNewHint();
+    </script>
+  </body>
+</html>

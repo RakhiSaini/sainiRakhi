@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .header {
+        display: flex;
+        justify-content: space-around;
+      }
+      .ts {
+        text-align: center;
+      }
+
+      .btns-box {
+        margin: 10px;
+        padding: 10px;
+        background-color: aqua;
+        height: 400px;
+      }
+      .gameBtn {
+        color: white;
+        background-color: purple;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 8px;
+        transition: 0.3s all ease-in-out;
+      }
+      .gameBtn:hover {
+        color: red;
+        background-color: blue;
+        scale: 1.06;
+      }
+
+      .mixAgain {
+        background-color: red;
+        padding: 8px 30px;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="ts">Bubble Game</h1>
+    <div class="header">
+      <div class="hintarea">
+        <p>Hint</p>
+        <input id="hintVal" type="number" readonly />
+      </div>
+      <div class="hintarea">
+        <p>Timer</p>
+        <input id="timerVal" type="number" readonly />
+      </div>
+      <div class="hintarea">
+        <p>Score</p>
+        <input id="scoreVal" type="number" readonly />
+      </div>
+      <div class="hintarea">
+        <p>Again</p>
+        <button class="mixAgain" onclick="generateBtns()">Mix</button>
+      </div>
+      <br />
+    </div>
+    <div class="btns-box ts"></div>
+
+    <script>
+      var hint = 0;
+      var score = 0;
+      var totalTimer = 60;
+
+      function getNewHint() {
+        hint = generateRandonNo();
+        document.getElementById("hintVal").value = hint;
+      }
+
+      function generateBtns() {
+        let btns = "";
+        let btnBox = document.querySelector(".btns-box");
+        for (let i = 0; i < 140; i++) {
+          btns += `<button class="gameBtn">${generateRandonNo()}</button>`;
+          btnBox.innerHTML = btns;
+        }
+      }
+
+      function generateRandonNo() {
+        let rNo = Math.floor(Math.random() * 100);
+
+        return rNo;
+      }
+
+      //   let btns = document.getElementsByClassName("gameBtn");
+      let btnBoxC = document.querySelector(".btns-box");
+
+      btnBoxC.addEventListener("click", (e) => {
+        console.log(e.target.innerText);
+        let clickedNo = Number(e.target.innerText);
+
+        if (clickedNo === hint) {
+          getNewHint();
+          generateBtns();
+          addScore();
+        } else {
+          alert("Wrong Number");
+          generateBtns();
+          if (score > 0) {
+            minusScore();
+          }
+        }
+      });
+
+      function addScore() {
+        score = score + 10;
+        document.getElementById("scoreVal").value = score;
+      }
+
+      function gameOver() {
+        console.log(`Game Over With Score = ${score}`);
+        alert(`Game Over With Score = ${score}`);
+        window.location.reload();
+      }
+
+      function minusScore() {
+        score = score - 10;
+        document.getElementById("scoreVal").value = score;
+      }
+
+      function runTimer() {
+        var timeOut = setInterval(() => {
+          if (totalTimer > 0) {
+            totalTimer--;
+            document.getElementById("timerVal").value = totalTimer;
+          } else {
+            clearInterval(timeOut);
+            console.log("TimeOut");
+            gameOver();
+          }
+        }, 1000);
+      }
+
+      runTimer();
+      generateBtns();
+      getNewHint();
+    </script>
+  </body>
+</html>
